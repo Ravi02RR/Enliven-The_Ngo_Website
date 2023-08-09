@@ -20,7 +20,9 @@ const Legal = () => {
     const textColor = useColorModeValue("black", "white");
     const cardBgColor = useColorModeValue("white", "gray.700");
     const bg = useColorModeValue("gray.100", "gray.800");
-    const cardBackground = "url('https://dragonflytraining.files.wordpress.com/2013/10/man-with-question-01.png')";
+    const cardBackground = "url('https://static.vecteezy.com/system/resources/previews/003/475/012/original/confused-man-with-question-mark-concept-flat-illustration-free-vector.jpg')";
+    const cardBackground1 = "url('https://cdn3.vectorstock.com/i/1000x1000/07/02/elegant-girl-working-customer-service-vector-21310702.jpg')";
+    const cardBackground2 = "url('https://static.vecteezy.com/system/resources/previews/003/475/009/original/man-and-woman-conversation-flat-illustration-free-vector.jpg')";
 
     return (
         <Box bg={bg}>
@@ -39,8 +41,8 @@ const Legal = () => {
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                     {questionsAndAnswers.map((qa, index) => (
                         <Box key={index} color={textColor}>
-                            <Heading size="md">{qa.title}</Heading>
-                            <Text mt={'20px'}>
+                            <Heading size={'sm'}>{qa.title}</Heading>
+                            <Text fontSize={'small'} mt={'20px'}>
                                 {qa.content}
                             </Text>
                         </Box>
@@ -65,6 +67,7 @@ const Legal = () => {
                     rounded="md"
                     overflow="hidden"
                     bgImage={cardBackground}
+
                     bgPos="center"
                     bgRepeat="no-repeat"
                     bgSize="cover"
@@ -73,18 +76,92 @@ const Legal = () => {
                         display: 'block',
                         h: 'full',
                         w: 'full',
-                        bgColor: 'blackAlpha.600',
+
                         position: 'absolute'
                     }}
                     color={textColor}
+
+                    boxShadow={'dark-lg'}
                 >
                     <VStack align="start">
-                        <Icon as={RiMessage2Line} w={8} h={8} />
-                        <Heading size="md" my="2">Ask a Question</Heading>
-                        <Text fontSize="sm">Get legal answers from lawyers. It's quick, easy, and anonymous!</Text>
-                        <LinkOverlay as={Link} to={"/question"}>
-                            <Button colorScheme="blue" variant="outline" w="full" mt="2">Ask Here</Button>
-                        </LinkOverlay>
+                        <Box>
+                            <Icon as={RiMessage2Line} w={8} h={8} />
+                            <Heading size="md" my="2">Ask a Question</Heading>
+                            <Text fontSize="sm">Get legal answers from lawyers. It's quick, easy, and anonymous!</Text>
+                            <LinkOverlay as={Link} to={"/question"}>
+                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Ask Here</Button>
+                            </LinkOverlay>
+                        </Box>
+                    </VStack>
+                </LinkBox>
+                <LinkBox
+                    as="article"
+                    maxW="sm"
+                    p="5"
+                    borderWidth="1px"
+                    rounded="md"
+                    overflow="hidden"
+                    bgImage={cardBackground1}
+                    bgPos="center"
+                    bgRepeat="no-repeat"
+                    bgSize="cover"
+
+                    _after={{
+                        content: '""',
+                        display: 'block',
+                        h: 'full',
+                        w: 'full',
+
+                        position: 'absolute'
+                    }}
+                    color={textColor}
+
+                    boxShadow={'dark-lg'}
+                >
+                    <VStack align="start">
+                        <Box>
+                            <Icon as={RiPhoneLine} w={8} h={8} />
+                            <Heading size="md" my="2">Talk to a Lawyer</Heading>
+                            <Text fontSize="sm">Personally talk to a lawyer about your problems.</Text>
+                            <LinkOverlay href="tel:+01123381023">
+                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Call 011-23381023</Button>
+                            </LinkOverlay>
+                        </Box>
+
+                    </VStack>
+                </LinkBox>
+                <LinkBox
+                    as="article"
+                    maxW="sm"
+                    p="5"
+                    borderWidth="1px"
+                    rounded="md"
+                    overflow="hidden"
+                    bgImage={cardBackground2}
+                    bgPos="center"
+                    bgRepeat="no-repeat"
+                    bgSize="cover"
+                    _after={{
+                        content: '""',
+                        display: 'block',
+                        h: 'full',
+                        w: 'full',
+
+                        position: 'absolute'
+                    }}
+                    color={textColor}
+
+                    boxShadow={'dark-lg'}
+                >
+                    <VStack align="start">
+                        <Icon as={RiUser3Line} w={8} h={8} />
+                        <Box>
+                            <Heading size="md" my="2">Hire a Lawyer</Heading>
+                            <Text fontSize="sm">Get a reputated lawyer to sort out your problems.</Text>
+                            <LinkOverlay as={Link} to={"https://nalsa.gov.in/services/legal-aid/legal-services"}>
+                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Ask Here</Button>
+                            </LinkOverlay>
+                        </Box>
                     </VStack>
                 </LinkBox>
                 {/* new */}
