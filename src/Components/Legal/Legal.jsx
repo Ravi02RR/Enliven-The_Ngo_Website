@@ -15,6 +15,29 @@ import {
 import { RiMessage2Line, RiUser3Line, RiPhoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { questionsAndAnswers } from "./Legaldata";
+const Array1=[
+    {
+        icon: RiMessage2Line,
+        title: "Ask a Question",
+        text: "Get legal answers from lawyers. It's quick, easy, and anonymous!",
+        link: "/question",
+        buttonLabel: "Ask Here"
+    },
+    {
+        icon: RiPhoneLine,
+        title: "Talk to a Lawyer",
+        text: "Personally talk to a lawyer about your problems.",
+        link: "tel:+01123381023",
+        buttonLabel: "Call 011-23381023"
+    },
+    {
+        icon: RiUser3Line,
+        title: "Hire a Lawyer",
+        text: "Get a reputed lawyer to sort out your problems.",
+        link: "https://nalsa.gov.in/services/legal-aid/legal-services",
+        buttonLabel: "Ask Here"
+    }
+]
 
 
 const Legal = () => {
@@ -48,125 +71,51 @@ const Legal = () => {
                 </SimpleGrid>
             </Box>
             <Flex
-                justify="space-around"
+                justify={{ base: "center", md: "space-around" }}
                 align="center"
-                wrap="wrap"
-                mt={'40'}
+                direction={{ base: "column", md: "row" }}
+                mt={'10'}
                 mb="5"
-                mx={{ base: "5", md: "20", lg: "40" }}
-                spacing={10}
+                mx={{ base: "2", md: "20", lg: "40" }}
+                spacing={{ base: 5, md: 10 }}
             >
 
-                <LinkBox
-                    as="article"
-                    maxW="sm"
-                    p="5"
-                    borderWidth="1px"
-                    rounded="md"
-                    overflow="hidden"
-
-
-                    bgPos="center"
-                    bgRepeat="no-repeat"
-                    bgSize="cover"
-                    _after={{
-                        content: '""',
-                        display: 'block',
-                        h: 'full',
-                        w: 'full',
-
-                        position: 'absolute'
-                    }}
-                    color={textColor}
-
-                    boxShadow={'dark-lg'}
-                >
-                    <VStack align="start">
-                        <Box>
-                            <Icon as={RiMessage2Line} w={8} h={8} />
-                            <Heading size="md" my="2">Ask a Question</Heading>
-                            <Text fontSize="sm">Get legal answers from lawyers. It's quick, easy, and anonymous!</Text>
-                            <LinkOverlay as={Link} to={"/question"}>
-                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Ask Here</Button>
+               
+                {Array1.map((card, idx) => (
+                    <LinkBox
+                        key={idx}
+                        marginBottom={{ base: '5', md: '0' }}
+                        as="article"
+                        w={{ base: "90%", md: "sm" }}
+                        h={{ md: "280px" }}
+                        p="5"
+                        borderWidth="1px"
+                        rounded="md"
+                        overflow="hidden"
+                        bgPos="center"
+                        bgRepeat="no-repeat"
+                        bgSize="cover"
+                        _after={{
+                            content: '""',
+                            display: 'block',
+                            h: 'full',
+                            w: 'full',
+                            position: 'absolute'
+                        }}
+                        color={textColor}
+                        boxShadow={'dark-lg'}
+                    >
+                        <VStack align="start" spacing="4" justifyContent="center" h="100%">
+                            <Icon as={card.icon} w={8} h={8} />
+                            <Heading size="md">{card.title}</Heading>
+                            <Text fontSize="sm">{card.text}</Text>
+                            <LinkOverlay as={Link} to={card.link}>
+                                <Button colorScheme="blue" variant="outline" w="full">{card.buttonLabel}</Button>
                             </LinkOverlay>
-                        </Box>
-                    </VStack>
-                </LinkBox>
-                <LinkBox
-                    as="article"
-                    maxW="sm"
-                    p="5"
-                    borderWidth="1px"
-                    rounded="md"
-                    overflow="hidden"
-
-                    bgPos="center"
-                    bgRepeat="no-repeat"
-                    bgSize="cover"
-
-                    _after={{
-                        content: '""',
-                        display: 'block',
-                        h: 'full',
-                        w: 'full',
-
-                        position: 'absolute'
-                    }}
-                    color={textColor}
-
-                    boxShadow={'dark-lg'}
-                >
-                    <VStack align="start">
-                        <Box>
-                            <Icon as={RiPhoneLine} w={8} h={8} />
-                            <Heading size="md" my="2">Talk to a Lawyer</Heading>
-                            <Text fontSize="sm">Personally talk to a lawyer about your problems.</Text>
-                            <LinkOverlay href="tel:+01123381023">
-                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Call 011-23381023</Button>
-                            </LinkOverlay>
-                        </Box>
-
-                    </VStack>
-                </LinkBox>
-                <LinkBox
-                    as="article"
-                    maxW="sm"
-                    p="5"
-                    borderWidth="1px"
-                    rounded="md"
-                    overflow="hidden"
-
-                    bgPos="center"
-                    bgRepeat="no-repeat"
-                    bgSize="cover"
-                    _after={{
-                        content: '""',
-                        display: 'block',
-                        h: 'full',
-                        w: 'full',
-
-                        position: 'absolute'
-                    }}
-                    color={textColor}
-
-                    boxShadow={'dark-lg'}
-                >
-                    <VStack align="start">
-                        <Icon as={RiUser3Line} w={8} h={8} />
-                        <Box>
-                            <Heading size="md" my="2">Hire a Lawyer</Heading>
-                            <Text fontSize="sm">Get a reputated lawyer to sort out your problems.</Text>
-                            <LinkOverlay as={Link} to={"https://nalsa.gov.in/services/legal-aid/legal-services"}>
-                                <Button colorScheme="blue" variant="outline" w="full" mt="2">Ask Here</Button>
-                            </LinkOverlay>
-                        </Box>
-                    </VStack>
-                </LinkBox>
-
-
-
+                        </VStack>
+                    </LinkBox>
+                ))}
             </Flex>
-
         </Box>
     );
 };

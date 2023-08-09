@@ -24,3 +24,4 @@ export const questionsAndAnswers = [
         content: "Yes, but they must first make the choice to change their behavior. It’s not easy for an abusive partner to stop choosing abusive behavior, once an abuser has had all of the power in a relationship, it’s difficult to transition."
     }
 ];
+
