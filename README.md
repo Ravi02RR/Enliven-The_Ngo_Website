@@ -1,6 +1,6 @@
 # Enliven
 
-![Enliven Logo](path_to_logo_here) <!-- Replace with your logo image -->
+
 
 ## Introduction
 
