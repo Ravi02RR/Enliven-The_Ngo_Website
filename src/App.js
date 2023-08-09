@@ -1,41 +1,24 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Navbar from './Components/Navbar/Navbar';
+import Home from './Components/Home/Home';
+import Legal from './Components/Legal/Legal';
+import Blog from './Components/Blog/Blog';
+import Ngo from './Components/Ngo/Ngo';
+
+
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <Router>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/legal' element={<Legal></Legal>}></Route>
+        <Route path='/blog' element={<Blog></Blog>}></Route>
+        <Route path='/ngo' element={<Ngo></Ngo>}></Route>
+      </Routes>
+    </Router>
   );
 }
 
