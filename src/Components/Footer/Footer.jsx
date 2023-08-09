@@ -12,7 +12,7 @@ const Footer = () => {
                     © {currentYear} Enliven. All rights reserved.
                 </Text>
                 <Flex mt={2}>
-                    <Link href="https://www.linkedin.com/in/ravi-ranjan-9264b0221/" isExternal mx={2}>
+                    <Link href="#" isExternal mx={2}>
                         <IconButton
                             aria-label="LinkedIn"
                             icon={<FaLinkedin />}
@@ -20,7 +20,7 @@ const Footer = () => {
                             variant="ghost"
                         />
                     </Link>
-                    <Link href="https://www.instagram.com/king_xoom/?hl=en" isExternal mx={2}>
+                    <Link href="#" isExternal mx={2}>
                         <IconButton
                             aria-label="Instagram"
                             icon={<FaInstagram />}
@@ -28,7 +28,7 @@ const Footer = () => {
                             variant="ghost"
                         />
                     </Link>
-                    <Link href="https://github.com/Ravi02RR" isExternal mx={2}>
+                    <Link href="#" isExternal mx={2}>
                         <IconButton
                             aria-label="GitHub"
                             icon={<FaGithub />}

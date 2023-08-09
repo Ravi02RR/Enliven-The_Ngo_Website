@@ -10,6 +10,7 @@ import Faqhome from './Components/Faqpage/Faqhome';
 import New from './Components/Faqpage/New';
 import Reply from './Components/Faqpage/Reply';
 import Footer from './Components/Footer/Footer';
+import Team from './Components/Team/Team';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path="/question" element={<Faqhome />} />
         <Route path="/new" element={<New />} />
+        <Route path="/team" element={<Team />} />
         <Route path="/view/:id" element={<Reply />} />
       </Routes>
       <Footer></Footer>

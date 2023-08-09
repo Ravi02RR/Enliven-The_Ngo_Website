@@ -65,6 +65,7 @@ const Navbar = () => {
                                     <LinkButton onClose={onClose} url="/ngo" title="Ngo" />
                                     <LinkButton onClose={onClose} url="/blog" title="Blog" />
                                     <LinkButton onClose={onClose} url="/contact" title="Contact us" />
+                                    <LinkButton onClose={onClose} url="/team" title="Team members" />
                                 </VStack>
                             </DrawerBody>
 
