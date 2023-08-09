@@ -6,14 +6,15 @@ const Team = () => {
     const members = [
         {
             name: "Vidushi Pandey",
-            position: "Software Engineer",
+            position: "Vellore Institute of Technology | Java | Web Developer ",
             image: "https://avatars.githubusercontent.com/u/91135324?v=4", 
             github: "https://github.com/vidushi", 
             linkedin: "https://github.com/MuggleHead" 
         },
+        
         {
             name: "Ravi Ranjan",
-            position: "Product Manager",
+            position: "Vellore Institute of Technology | Fullstack MERN Developer ",
             image: "https://avatars.githubusercontent.com/u/117570854?v=4", 
             github: "https://github.com/Ravi02RR", 
             linkedin: "https://www.linkedin.com/in/ravi-ranjan-9264b0221" 
