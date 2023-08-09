@@ -1,69 +1,78 @@
-##EnLiven
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Enliven
 
-## Available Scripts
+![Enliven Logo](path_to_logo_here) <!-- Replace with your logo image -->
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+Enliven is a comprehensive resource dedicated to supporting domestic workers who have faced abuse. Our platform delivers essential information, aid, and connections to ensure every individual receives the assistance they deserve.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Key Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Comprehensive information on **laws** and **articles** related to abuse.
+- Direct **connections to NGOs** and organizations providing free legal assistance.
+- A supportive **community platform** where users can share experiences and offer mutual support.
+- A dedicated **contact page** for seamless communication between users and administrators.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the project locally, follow these steps:
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have `npm` and `node` installed.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/Ravi02RR/Enliven-The_Ngo_Website.git
+    ```
 
-### `npm run eject`
+2. **Navigate to the project directory**:
+    ```bash
+    cd Enliven-The_Ngo_Website
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Install necessary dependencies**:
+    ```bash
+    npm install
+    ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Start the development server**:
+    ```bash
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Front-end**: React
+- **Back-end**: Node.js with Express.js
+- **Database**: MongoDB
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### HomePage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![HomePage Screenshot](https://github.com/Ravi2021gh/assetEnliven/blob/main/home.png?raw=true)
 
-### Code Splitting
+### Mobile View
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![Mobile View](https://github.com/Ravi2021gh/assetEnliven/blob/main/mobilehome.png?raw=true)
 
-### Analyzing the Bundle Size
+### Blog Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![Blog Page Screenshot](https://github.com/Ravi2021gh/assetEnliven/blob/main/Blog.png?raw=true)
 
-### Making a Progressive Web App
+### NGO Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![NGO Page Screenshot](https://github.com/Ravi2021gh/assetEnliven/blob/main/SearchNGo.png?raw=true)
 
-### Advanced Configuration
+### Question Page with Reply Functionality
+![Question Page Screenshot](https://github.com/Ravi2021gh/assetEnliven/blob/main/reply.png?raw=true)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Contributing
 
-### `npm run build` fails to minify
+We welcome contributions! If you find bugs or wish to add features, feel free to create issues and pull requests.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
