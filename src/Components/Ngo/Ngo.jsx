@@ -45,7 +45,7 @@ const Ngo = () => {
                 {dataSearch.map(item => (
                     <LinkBox key={item.id} width={{ base: "90%", md: "45%", lg: "30%" }} p={4}>
                         <Box boxShadow="xl" rounded="lg" overflow="hidden" bg={cardBgColor}>
-                            <Image src={item.img} alt={item.title} />
+                            <Image  objectFit={'cover'} minHeight={['sm','lg']} src={item.img} alt={item.title} />
                             <Box p={5} transition="0.3s">
                                 <LinkOverlay href={item.link}>
                                     <Heading size="md" mb={3} color={textColor}>{item.title}</Heading>

@@ -3,11 +3,11 @@ import { Box, Image, Text, VStack, Heading, Container, Input, useColorModeValue,
 import { Blogdata } from './Blogdata';
 
 export function Card({ img, title, para }) {
-    const textColor = useColorModeValue("gray.700", "gray.200"); 
+    const textColor = useColorModeValue("gray.700", "gray.200");
 
     return (
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="xl" p="6" bg={useColorModeValue("white", "gray.700")}>
-            <Image src={img} alt={title} />
+            <Image minHeight={['sm',"lg"]} objectFit={'cover'} src={img} alt={title} />
             <VStack spacing={3} align="start">
                 <Heading size="md" color={textColor}>{title}</Heading>
                 <Text color={textColor}>{para}</Text>

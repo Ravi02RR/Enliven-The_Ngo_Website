@@ -9,6 +9,8 @@ import Contact from './Components/Contact/Contact';
 import Faqhome from './Components/Faqpage/Faqhome';
 import New from './Components/Faqpage/New';
 import Reply from './Components/Faqpage/Reply';
+import Footer from './Components/Footer/Footer';
+
 
 
 
@@ -26,6 +28,7 @@ function App() {
         <Route path="/new" element={<New />} />
         <Route path="/view/:id" element={<Reply />} />
       </Routes>
+      <Footer></Footer>
     </Router>
   );
 }

@@ -1,6 +1,15 @@
 import React, { useState } from "react";
+import {
+  Box,
+  Input,
+  Button,
+  Text,
+  VStack,
+  Heading,
+  useToast,
+  useColorModeValue
+} from "@chakra-ui/react";
 import axios from 'axios';
-import "./Contact.css";
 
 const Contact = () => {
   const [contactInfo, setContactInfo] = useState({
@@ -10,6 +19,13 @@ const Contact = () => {
     message: ''
   });
 
+  const toast = useToast();
+
+  // Color mode adjustments
+  const bgColor = useColorModeValue("gray.100", "gray.800");
+  const boxColor = useColorModeValue("white", "gray.700");
+  const textColor = useColorModeValue("black", "white");
+
   const handleChange = (e) => {
     setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
   }
@@ -18,7 +34,13 @@ const Contact = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8080/contact', contactInfo);
-      alert('Message sent successfully!');
+      toast({
+        title: "Success.",
+        description: "Message sent successfully!",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       setContactInfo({
         fullName: '',
         email: '',
@@ -26,35 +48,65 @@ const Contact = () => {
         message: ''
       });
     } catch (err) {
-      console.error(err);
-      alert('Failed to send the message. Please try again.');
+      toast({
+        title: "Error.",
+        description: "Failed to send the message. Please try again.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 
   return (
-    <div className="contact-container">
-      <div className="contact-content">
-        <div className="contact-text">
-          <h1 className="contact-header">Contact Us</h1>
-          <h1 className="contact-subheader">YOUR IDEA <span className="highlight">IS OUR</span><br /> SOLUTION</h1>
-        </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <label>Full Name</label>
-          <input type="text" name="fullName" value={contactInfo.fullName} onChange={handleChange} />
+    <Box display={'flex'} justifyContent="center" alignItems="center" minHeight="100vh" p={4} bg={bgColor}>
+      <Box width={["90%", "80%"]} bg={boxColor} color={textColor} p={5} rounded="md" boxShadow="lg">
+        <VStack spacing={5}>
+          <Box>
+            <Heading mb={1}>Contact Us</Heading>
+            <Text fontSize="xl" fontWeight="bold">
+              YOUR IDEA <Text as="span" color="yellow.400">IS OUR</Text> SOLUTION
+            </Text>
+          </Box>
 
-          <label>Email</label>
-          <input type="email" name="email" value={contactInfo.email} onChange={handleChange} />
-
-          <label>Phone</label>
-          <input type="number" name="phone" value={contactInfo.phone} onChange={handleChange} />
-
-          <label>Message</label>
-          <input type="text" name="message" value={contactInfo.message} onChange={handleChange} />
-
-          <button type="submit" className="contact-button">Send Message</button>
-        </form>
-      </div>
-    </div>
+          <VStack as="form" onSubmit={handleSubmit} spacing={4} align="stretch" width="100%">
+            <Input
+              variant="filled"
+              placeholder="Full Name"
+              type="text"
+              name="fullName"
+              value={contactInfo.fullName}
+              onChange={handleChange}
+            />
+            <Input
+              variant="filled"
+              placeholder="Email"
+              type="email"
+              name="email"
+              value={contactInfo.email}
+              onChange={handleChange}
+            />
+            <Input
+              variant="filled"
+              placeholder="Phone"
+              type="tel"
+              name="phone"
+              value={contactInfo.phone}
+              onChange={handleChange}
+            />
+            <Input
+              variant="filled"
+              placeholder="Message"
+              type="text"
+              name="message"
+              value={contactInfo.message}
+              onChange={handleChange}
+            />
+            <Button colorScheme="yellow" type="submit" size="lg">Send Message</Button>
+          </VStack>
+        </VStack>
+      </Box>
+    </Box>
   )
 }
 

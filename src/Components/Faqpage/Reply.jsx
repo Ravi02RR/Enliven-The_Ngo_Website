@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import "./Reply.css"
+import { 
+  Box, 
+  Heading, 
+  Text, 
+  VStack, 
+  Input, 
+  Button,
+  useColorModeValue
+} from "@chakra-ui/react";
 
 const Reply = () => {
     const [question, setQuestion] = useState({ replies: [] });
@@ -39,26 +47,37 @@ const Reply = () => {
             });
     }
 
+    const bgColor = useColorModeValue("white", "gray.800");
+    const cardBorderColor = useColorModeValue("gray.200", "gray.700");
+    
     return (
-        <div className="container">
-            <div className="card">
-                <h2 className="card-title">{question.title}</h2>
-                {question.replies.map(reply => (
-                    <p key={reply._id} className="reply">{reply.reply}</p>
-                ))}
+        <Box p={4} display="flex" flexDirection="column" alignItems="center" bg={bgColor} minH="100vh">
+            <Box 
+                width={["100%", "80%", "60%"]} 
+                bg={bgColor}
+                p={6}
+                boxShadow="lg"
+                borderRadius="md"
+                border="1px"
+                borderColor={cardBorderColor}
+            >
+                <Heading mb={4}>{question.title}</Heading>
+                <VStack spacing={3} align="start" mb={6}>
+                    {question.replies.map(reply => (
+                        <Text key={reply._id}>{reply.reply}</Text>
+                    ))}
+                </VStack>
 
-                <form onSubmit={handleReplySubmit}>
-                    <input
-                        type="text"
-                        value={newReply}
+                <VStack as="form" onSubmit={handleReplySubmit} spacing={4} align="stretch">
+                    <Input 
+                        placeholder="Write a reply..." 
+                        value={newReply} 
                         onChange={handleNewReplyChange}
-                        className="card-title flex"
-                        placeholder="Write a reply..."
                     />
-                    <button type="submit" className="button">Submit Reply</button>
-                </form>
-            </div>
-        </div>
+                    <Button colorScheme="yellow" type="submit">Submit Reply</Button>
+                </VStack>
+            </Box>
+        </Box>
     )
 }
 

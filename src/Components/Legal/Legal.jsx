@@ -16,13 +16,11 @@ import { RiMessage2Line, RiUser3Line, RiPhoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { questionsAndAnswers } from "./Legaldata";
 
+
 const Legal = () => {
     const textColor = useColorModeValue("black", "white");
     const cardBgColor = useColorModeValue("white", "gray.700");
     const bg = useColorModeValue("gray.100", "gray.800");
-    const cardBackground = "url('https://static.vecteezy.com/system/resources/previews/003/475/012/original/confused-man-with-question-mark-concept-flat-illustration-free-vector.jpg')";
-    const cardBackground1 = "url('https://cdn3.vectorstock.com/i/1000x1000/07/02/elegant-girl-working-customer-service-vector-21310702.jpg')";
-    const cardBackground2 = "url('https://static.vecteezy.com/system/resources/previews/003/475/009/original/man-and-woman-conversation-flat-illustration-free-vector.jpg')";
 
     return (
         <Box bg={bg}>
@@ -58,7 +56,7 @@ const Legal = () => {
                 mx={{ base: "5", md: "20", lg: "40" }}
                 spacing={10}
             >
-                {/* LinkBox */}
+
                 <LinkBox
                     as="article"
                     maxW="sm"
@@ -66,7 +64,7 @@ const Legal = () => {
                     borderWidth="1px"
                     rounded="md"
                     overflow="hidden"
-                    bgImage={cardBackground}
+
 
                     bgPos="center"
                     bgRepeat="no-repeat"
@@ -101,7 +99,7 @@ const Legal = () => {
                     borderWidth="1px"
                     rounded="md"
                     overflow="hidden"
-                    bgImage={cardBackground1}
+
                     bgPos="center"
                     bgRepeat="no-repeat"
                     bgSize="cover"
@@ -137,7 +135,7 @@ const Legal = () => {
                     borderWidth="1px"
                     rounded="md"
                     overflow="hidden"
-                    bgImage={cardBackground2}
+
                     bgPos="center"
                     bgRepeat="no-repeat"
                     bgSize="cover"
@@ -164,8 +162,11 @@ const Legal = () => {
                         </Box>
                     </VStack>
                 </LinkBox>
-                {/* new */}
+
+
+
             </Flex>
+
         </Box>
     );
 };

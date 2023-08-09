@@ -5,39 +5,64 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 
+
 mongoose.connect("mongodb+srv://Ravi02rr:slrbkMeyLMxjBfs3@cluster0.pa8zqtm.mongodb.net/?retryWrites=true&w=majority", {
     dbName: "backend",
 })
-    .then(() => console.log("data base connected"))
+    .then(() => console.log("database connected"))
     .catch((e) => console.log(e));
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 const replySchema = new mongoose.Schema({
     reply: String,
 });
-
 const Reply = mongoose.model('Reply', replySchema);
+
 
 const questionSchema = new mongoose.Schema({
     title: String,
     replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
 });
-
 const Question = mongoose.model('Question', questionSchema);
 
-// Contact Schema
-const contactSchema = new mongoose.Schema({
-    fullName: String,
-    email: String,
-    phone: Number,
-    message: String,
-});
 
+const contactSchema = new mongoose.Schema({
+    fullName: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 2,
+        maxlength: 100
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+    },
+    phone: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 10,
+        maxlength: 15
+    },
+    message: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 5,
+        maxlength: 500
+    }
+});
 const Contact = mongoose.model('Contact', contactSchema);
 
+// Routes
 app.get('/', async (req, res) => {
     try {
         const questions = await Question.find({});
@@ -85,19 +110,26 @@ app.post('/view/:id/replies', async (req, res) => {
     }
 });
 
-// Contact Endpoint
+
 app.post('/contact', async (req, res) => {
     const { fullName, email, phone, message } = req.body;
+    if (!fullName || !email || !phone || !message) {
+        return res.status(400).send('All fields are required.');
+    }
     try {
         const contact = new Contact({ fullName, email, phone, message });
         await contact.save();
-        res.json(contact);
+        res.status(201).json(contact);
     } catch (err) {
         console.log(err);
+        if (err.name === 'ValidationError') {
+            return res.status(400).send(err.message);
+        }
         res.status(500).send('Internal Server Error');
     }
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
