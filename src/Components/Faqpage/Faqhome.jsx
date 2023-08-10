@@ -17,7 +17,7 @@ const Faqhome = () => {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    axios.get('https://enliven-the-ngo-website-ixmk.vercel.app/')
+    axios.get('https://enliven-the-ngo-website-ixmk-git-master-ravi02rr.vercel.app/')
       .then(response => {
         setQuestions(response.data);
       })
