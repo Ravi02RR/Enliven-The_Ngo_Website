@@ -35,7 +35,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://enliven-the-ngo-website-ixmk.vercel.app/', contactInfo);
+      await axios.post('https://enliven-the-ngo-website-ixmk.vercel.app/contact', contactInfo);
       toast({
         title: "Success.",
         description: "Message sent successfully!",
