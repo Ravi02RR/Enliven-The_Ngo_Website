@@ -56,8 +56,8 @@ const contactSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 5,
-        maxlength: 500
+        minlength: 1,
+        maxlength: 5000
     }
 });
 const Contact = mongoose.model('Contact', contactSchema);

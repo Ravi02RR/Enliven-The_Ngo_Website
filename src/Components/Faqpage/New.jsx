@@ -50,7 +50,7 @@ const New = () => {
                     <Heading mb={4}>Post Your Question Here...</Heading>
                     <FormControl as="form" onSubmit={handleSubmit}>
                         <FormLabel htmlFor="question-title">Title</FormLabel>
-                        <Input 
+                        <Input  isRequired
                             id="question-title"
                             value={title} 
                             onChange={handleTitleChange} 

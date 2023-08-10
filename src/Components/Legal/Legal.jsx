@@ -15,7 +15,13 @@ import {
 import { RiMessage2Line, RiUser3Line, RiPhoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { questionsAndAnswers } from "./Legaldata";
-const Array1=[
+import { motion } from 'framer-motion';
+const MotionVStack = motion(VStack);
+const popInAnimation = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+};
+const Array1 = [
     {
         icon: RiMessage2Line,
         title: "Ask a Question",
@@ -46,7 +52,7 @@ const Legal = () => {
     const bg = useColorModeValue("gray.100", "gray.800");
 
     return (
-        <Box bg={bg}>
+        <Box bg={bg} minHeight={'100vh'}>
             <Box width={'full'} background={'black'}>
                 <Text padding={['1.5', '5']} color={'whitesmoke'} fontSize={'6xl'} fontFamily={'serif'}>Legal Advice</Text>
             </Box>
@@ -80,7 +86,7 @@ const Legal = () => {
                 spacing={{ base: 5, md: 10 }}
             >
 
-               
+
                 {Array1.map((card, idx) => (
                     <LinkBox
                         key={idx}
@@ -105,14 +111,36 @@ const Legal = () => {
                         color={textColor}
                         boxShadow={'dark-lg'}
                     >
-                        <VStack align="start" spacing="4" justifyContent="center" h="100%">
-                            <Icon as={card.icon} w={8} h={8} />
+                        <MotionVStack
+                            align='center'
+                            spacing="4"
+                            justifyContent="center"
+                            h="100%"
+                            {...popInAnimation}
+                            whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                            p={4}
+                            borderRadius="md"
+                            boxShadow="md"
+                            bg={cardBgColor}
+                            color={textColor}
+                        >
+                            <motion.div whileHover={{ rotate: 360, transition: { duration: 0.6 } }}>
+                                <Icon as={card.icon} w={8} h={8} />
+                            </motion.div>
+
                             <Heading size="md">{card.title}</Heading>
+
                             <Text fontSize="sm">{card.text}</Text>
+
                             <LinkOverlay as={Link} to={card.link}>
-                                <Button colorScheme="blue" variant="outline" w="full">{card.buttonLabel}</Button>
+                                <motion.button
+                                    whileHover={{ y: '-5px', transition: { yoyo: Infinity, duration: 0.3 } }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <Button colorScheme="yellow" variant="outline" w="full">{card.buttonLabel}</Button>
+                                </motion.button>
                             </LinkOverlay>
-                        </VStack>
+                        </MotionVStack>
                     </LinkBox>
                 ))}
             </Flex>

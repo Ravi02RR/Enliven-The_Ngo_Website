@@ -21,7 +21,7 @@ const Contact = () => {
 
   const toast = useToast();
 
-  // Color mode adjustments
+  
   const bgColor = useColorModeValue("gray.100", "gray.800");
   const boxColor = useColorModeValue("white", "gray.700");
   const textColor = useColorModeValue("black", "white");
