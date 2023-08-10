@@ -18,6 +18,13 @@ const Team = () => {
             image: "https://avatars.githubusercontent.com/u/117570854?v=4", 
             github: "https://github.com/Ravi02RR", 
             linkedin: "https://www.linkedin.com/in/ravi-ranjan-9264b0221" 
+        },
+        {
+            name: "Pritha Dey",
+            position: "Vellore Institute of Technology | Fullstack MERN Developer ",
+            image: "https://avatars.githubusercontent.com/u/117570854?v=4", 
+            github: "https://github.com/Ravi02RR", 
+            linkedin: "https://www.linkedin.com/in/ravi-ranjan-9264b0221" 
         }
     ];
 
