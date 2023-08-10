@@ -12,7 +12,15 @@ mongoose.connect("mongodb+srv://Ravi02rr:slrbkMeyLMxjBfs3@cluster0.pa8zqtm.mongo
     .then(() => console.log("database connected"))
     .catch((e) => console.log(e));
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: ['http://localhost:3000/'],
+        methods: ["POST", "GET"],
+        credentials: true
+
+    }
+
+));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
