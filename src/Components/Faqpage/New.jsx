@@ -23,7 +23,7 @@ const New = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('https://enliven-the-ngo-website-ixmk.vercel.app/', { title })
+        axios.post('https://enliven-the-ngo-website-ixmk-git-master-ravi02rr.vercel.app/', { title })
             .then(() => {
                 navigate("/question");
             })
