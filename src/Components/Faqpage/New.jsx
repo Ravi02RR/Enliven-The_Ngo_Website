@@ -23,7 +23,7 @@ const New = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('https://enliven-the-ngo-website-ixmk.vercel.app/', { title })
+        axios.post('http://localhost:8080/', { title })
             .then(() => {
                 navigate("/question");
             })
