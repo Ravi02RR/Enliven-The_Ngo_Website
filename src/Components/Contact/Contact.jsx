@@ -29,11 +29,13 @@ const Contact = () => {
   const handleChange = (e) => {
     setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
   }
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/contact', contactInfo);
+      await axios.post('enliven-the-ngo-website-ixmk.vercel.app', contactInfo);
       toast({
         title: "Success.",
         description: "Message sent successfully!",
