@@ -34,7 +34,7 @@ const Reply = () => {
     const handleReplySubmit = (event) => {
         event.preventDefault();
 
-        axios.post(`enliven-the-ngo-website-ixmk.vercel.app/view/${id}/replies`, { reply: newReply })
+        axios.post(`https://enliven-the-ngo-website-ixmk.vercel.app/view/${id}/replies`, { reply: newReply })
             .then(response => {
                 setQuestion(prevQuestion => ({
                     ...prevQuestion,
