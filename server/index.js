@@ -14,7 +14,7 @@ mongoose.connect("mongodb+srv://Ravi02rr:slrbkMeyLMxjBfs3@cluster0.pa8zqtm.mongo
 
 app.use(cors(
     {
-        origin: ['http://localhost:3000/'],
+        origin: ['enliven-the-ngo-website-ixmk.vercel.app'],
         methods: ["POST", "GET"],
         credentials: true
 
