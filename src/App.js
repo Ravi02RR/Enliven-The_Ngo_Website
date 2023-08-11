@@ -15,11 +15,13 @@ import Team from './Components/Team/Team';
 
 
 
+
 function App() {
   return (
     <Router>
       <Navbar></Navbar>
       <Routes>
+
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/legal' element={<Legal></Legal>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
@@ -28,8 +30,10 @@ function App() {
         <Route path="/question" element={<Faqhome />} />
         <Route path="/new" element={<New />} />
         <Route path="/team" element={<Team />} />
+
         <Route path="/view/:id" element={<Reply />} />
       </Routes>
+
       <Footer></Footer>
     </Router>
   );
