@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Box,
     Button,
@@ -16,10 +16,21 @@ import { RiMessage2Line, RiUser3Line, RiPhoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { questionsAndAnswers } from "./Legaldata";
 import { motion } from 'framer-motion';
+import Tour from "reactour";
+
 const MotionVStack = motion(VStack);
+
 const popInAnimation = {
     initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+};
+const speak = (message) => {
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(message);
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.error('Your browser does not support the Web Speech API');
+    }
 };
 const Array1 = [
     {
@@ -27,36 +38,94 @@ const Array1 = [
         title: "Ask a Question",
         text: "Get legal answers from lawyers. It's quick, easy, and anonymous!",
         link: "/question",
-        buttonLabel: "Ask Here"
+        buttonLabel: "Ask Here",
+        tourData: "tour-question"
     },
     {
         icon: RiPhoneLine,
         title: "Talk to a Lawyer",
         text: "Personally talk to a lawyer about your problems.",
         link: "tel:+01123381023",
-        buttonLabel: "Call 011-23381023"
+        buttonLabel: "Call 011-23381023",
+        tourData: "tour-call"
     },
     {
         icon: RiUser3Line,
         title: "Hire a Lawyer",
         text: "Get a reputed lawyer to sort out your problems.",
         link: "https://nalsa.gov.in/services/legal-aid/legal-services",
-        buttonLabel: "Ask Here"
+        buttonLabel: "Ask Here",
+        tourData: "tour-hire"
     }
-]
+];
 
+
+const tourSteps = [
+
+    {
+        selector: '[data-tour="qa-section"]',
+        content: 'Here, you can see different legal questions and answers.',
+        action: () => speak('Here, you can see different legal questions and answers.')
+    },
+    {
+        selector: '[data-tour="services"]',
+        content: 'These are different services you can avail.',
+        action: () => speak('These are different services you can avail.')
+    },
+    {
+        selector: '[data-tour="tour-question"]',
+        content: 'Use this to ask legal questions.',
+        action: () => speak('Use this to ask legal questions.')
+    },
+    {
+        selector: '[data-tour="tour-call"]',
+        content: 'Use this to directly call a lawyer.',
+        action: () => speak('Use this to directly call a lawyer.')
+    },
+    {
+        selector: '[data-tour="tour-hire"]',
+        content: 'Use this if you wish to hire a lawyer.',
+        action: () => speak('Use this if you wish to hire a lawyer.')
+    }
+];
 
 const Legal = () => {
     const textColor = useColorModeValue("black", "white");
     const cardBgColor = useColorModeValue("white", "gray.700");
     const bg = useColorModeValue("gray.100", "gray.800");
+    const accentColor = useColorModeValue("#FFD700", "#FFEB3B");
+    const tourBgColor = useColorModeValue("white", "gray.800");
+    const tourTextColor = useColorModeValue("black", "black");
+
+    const [isTourOpen, setTourOpen] = useState(false);
+
+
+    const customTourStyles = {
+        tooltip: {
+            backgroundColor: tourBgColor,
+            color: tourTextColor,
+        },
+        mask: {
+            backgroundColor: 'rgba(0,0,0,0.5)'
+        },
+    };
 
     return (
         <Box bg={bg} minHeight={'100vh'}>
-            <Box width={'full'} background={'black'}>
-                <Text padding={['1.5', '5']} color={'whitesmoke'} fontSize={'6xl'} fontFamily={'serif'}>Legal Advice</Text>
-            </Box>
             <Box
+                width={'full'}
+                background={'black'}
+
+            >
+                <Text padding={['1.5', '5']} color={'whitesmoke'} fontSize={'6xl'} fontFamily={'serif'}>
+                    Legal Advice
+                    <Text fontSize={'xl'}> For Tutorial to the website <Button onClick={() => setTourOpen(true)} variant={'link'}>Click Here..</Button></Text>
+                </Text>
+            </Box>
+
+
+            <Box
+                data-tour="qa-section"
                 border={'1px'}
                 borderRadius={'2xl'}
                 p="5"
@@ -76,7 +145,9 @@ const Legal = () => {
                     ))}
                 </SimpleGrid>
             </Box>
+
             <Flex
+                data-tour="services"
                 justify={{ base: "center", md: "space-around" }}
                 align="center"
                 direction={{ base: "column", md: "row" }}
@@ -85,11 +156,10 @@ const Legal = () => {
                 mx={{ base: "2", md: "20", lg: "40" }}
                 spacing={{ base: 5, md: 10 }}
             >
-
-
                 {Array1.map((card, idx) => (
                     <LinkBox
                         key={idx}
+                        data-tour={card.tourData}
                         marginBottom={{ base: '5', md: '0' }}
                         as="article"
                         w={{ base: "90%", md: "sm" }}
@@ -144,6 +214,21 @@ const Legal = () => {
                     </LinkBox>
                 ))}
             </Flex>
+
+            <Tour
+                steps={tourSteps}
+                isOpen={isTourOpen}
+                onRequestClose={() => setTourOpen(false)}
+                rounded={5}
+                accentColor={accentColor}
+                styles={customTourStyles}
+                onChange={(currentIndex) => {
+                    const currentStep = tourSteps[currentIndex];
+                    if (currentStep && currentStep.action) {
+                        currentStep.action();
+                    }
+                }}
+            />
         </Box>
     );
 };
