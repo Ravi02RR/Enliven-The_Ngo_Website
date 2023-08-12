@@ -34,7 +34,7 @@ const Home = () => {
                             </Text>
                         </Heading>
                         <Text mb={6} maxWidth="50ch">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Domestic workers role in society and their contributions must be acknowledged. They deserve fair treatment safe working conditions, and respect . They should be valued.
                         </Text>
                         <Button margin={'1.5'} colorScheme="yellow" variant="solid" _hover={{ color: "white" }}>
                             Tutorial
