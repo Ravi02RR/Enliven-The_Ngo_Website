@@ -19,13 +19,7 @@ const Team = () => {
             github: "https://github.com/Ravi02RR", 
             linkedin: "https://www.linkedin.com/in/ravi-ranjan-9264b0221" 
         },
-        {
-            name: "Pritha Dey",
-            position: "Vellore Institute of Technology | Fullstack MERN Developer ",
-            image: "https://media.licdn.com/dms/image/C5603AQGnttRzDVtkPg/profile-displayphoto-shrink_400_400/0/1661353740191?e=1697068800&v=beta&t=jI10_lrUbxBeQvgsnhhn4KCGm0mxCYHKSGyCqHPCfZE", 
-            github: "https://github.com/Ravi02RR", 
-            linkedin: "https://www.linkedin.com/in/ravi-ranjan-9264b0221" 
-        }
+        
     ];
 
     return (
