@@ -2,15 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const Filter = require('bad-words');
+const BadWordsFilter = require('bad-words');
+const filter = new BadWordsFilter();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Initialize the profanity filter
-const filter = new Filter();
-
-mongoose.connect("mongodb+srv://Ravi02rr:slrbkMeyLMxjBfs3@cluster0.pa8zqtm.mongodb.net/?retryWrites=true&w=majority", {
-    dbName: "backend",
+mongoose.connect("mongodb+srv://ravi:ravi@cluster0.rxahatw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+    dbName: "enliven",
 })
     .then(() => console.log("database connected"))
     .catch((e) => console.log(e));
@@ -19,7 +17,71 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Profanity Filter Middleware
+const profanityFilterMiddleware = (req, res, next) => {
+    const { title, reply, fullName, message } = req.body;
 
+    
+    if (filter.isProfane(title) || filter.isProfane(reply) || filter.isProfane(fullName) || filter.isProfane(message)) {
+        
+        const warningMessage = "Your message contains abusive language. Please refrain from using offensive words.";
+
+        
+        console.log(`Attempted use of bad language: ${req.ip} - ${req.method} - ${req.originalUrl}`);
+
+      
+        return res.status(400).send(warningMessage);
+    }
+
+   
+    next();
+};
+
+app.use(profanityFilterMiddleware);
+
+// Schemas and Models definitions...
+const replySchema = new mongoose.Schema({
+    reply: String,
+});
+const Reply = mongoose.model('Reply', replySchema);
+
+const questionSchema = new mongoose.Schema({
+    title: String,
+    replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
+});
+const Question = mongoose.model('Question', questionSchema);
+
+const contactSchema = new mongoose.Schema({
+    fullName: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 2,
+        maxlength: 100
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+    },
+    phone: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 10,
+        maxlength: 15
+    },
+    message: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 10,
+        maxlength: 5000
+    }
+});
+const Contact = mongoose.model('Contact', contactSchema);
 
 // Routes
 app.get('/', async (req, res) => {
@@ -35,11 +97,6 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     const title = req.body.title;
     try {
-        
-        if (filter.isProfane(title)) {
-            return res.status(400).send('Title contains abusive language.');
-        }
-        
         const ask = new Question({ title });
         await ask.save();
         res.json(ask);
@@ -62,11 +119,6 @@ app.get('/view/:id', async (req, res) => {
 app.post('/view/:id/replies', async (req, res) => {
     const replyText = req.body.reply;
     try {
-        
-        if (filter.isProfane(replyText)) {
-            return res.status(400).send('Reply contains abusive language.');
-        }
-        
         const reply = new Reply({ reply: replyText });
         await reply.save();
         const question = await Question.findById(req.params.id);
@@ -79,18 +131,12 @@ app.post('/view/:id/replies', async (req, res) => {
     }
 });
 
-
 app.post('/contact', async (req, res) => {
     const { fullName, email, phone, message } = req.body;
     if (!fullName || !email || !phone || !message) {
         return res.status(400).send('All fields are required.');
     }
     try {
-       
-        if (filter.isProfane(message)) {
-            return res.status(400).send('Message contains abusive language.');
-        }
-        
         const contact = new Contact({ fullName, email, phone, message });
         await contact.save();
         res.status(201).json(contact);
@@ -102,6 +148,7 @@ app.post('/contact', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 // Start the server
 app.listen(port, () => {
