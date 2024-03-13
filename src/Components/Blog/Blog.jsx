@@ -100,7 +100,7 @@ const Blog = () => {
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
             />
-            {isLoading && <Loader />} {/* Replace "Loading..." with your Loader component */}
+            {isLoading && <Loader />} 
             {error && <div>Error: {error}</div>}
             {!isLoading && !error && (
                 <>
