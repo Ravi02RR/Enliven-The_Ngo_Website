@@ -18,7 +18,7 @@ const Reply = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/view/${id}`)
+        axios.get(`https://enliven-the-ngo-website.onrender.com/view/${id}`)
             .then(response => {
                 setQuestion(response.data);
             })
@@ -34,7 +34,7 @@ const Reply = () => {
     const handleReplySubmit = (event) => {
         event.preventDefault();
 
-        axios.post(`http://localhost:8080/view/${id}/replies`, { reply: newReply })
+        axios.post(`https://enliven-the-ngo-website.onrender.com/view/${id}/replies`, { reply: newReply })
             .then(response => {
                 setQuestion(prevQuestion => ({
                     ...prevQuestion,
